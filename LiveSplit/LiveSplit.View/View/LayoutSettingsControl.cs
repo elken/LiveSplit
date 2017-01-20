@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using LiveSplit.UI;
 using LiveSplit.Options;
@@ -26,11 +27,18 @@ namespace LiveSplit.View
         public float ImageOpacity { get { return Settings.ImageOpacity * 100f; } set { Settings.ImageOpacity = value / 100f; } }
         public float ImageBlur { get { return Settings.ImageBlur * 100f; } set { Settings.ImageBlur = value / 100f; } }
 
+        private static FileSystemWatcher watcher;
+
+        private string imagePath { get; set; }
+
+        private DateTime lastRead;
+
         public LayoutSettingsControl(Options.LayoutSettings settings, ILayout layout)
         {
             InitializeComponent();
             Settings = settings;
             Layout = layout;
+            chkFileChanges.DataBindings.Add("Checked", Settings, "LiveUpdateImage", false, DataSourceUpdateMode.OnPropertyChanged);
             chkBestSegments.DataBindings.Add("Checked", Settings, "ShowBestSegments", false, DataSourceUpdateMode.OnPropertyChanged);
             chkAlwaysOnTop.DataBindings.Add("Checked", Settings, "AlwaysOnTop", false, DataSourceUpdateMode.OnPropertyChanged);
             chkAntiAliasing.DataBindings.Add("Checked", Settings, "AntiAliasing", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -59,6 +67,9 @@ namespace LiveSplit.View
 
             cmbBackgroundType.SelectedItem = GetBackgroundTypeString(Settings.BackgroundType);
             originalBackgroundImage = Settings.BackgroundImage;
+            watcher = new FileSystemWatcher();
+            watcher.Changed += OnChanged;
+            imagePath = "";
         }        
 
         private string GetBackgroundTypeString(BackgroundType type)
@@ -81,6 +92,7 @@ namespace LiveSplit.View
             var selectedItem = cmbBackgroundType.SelectedItem.ToString();
             btnBackground.Visible = selectedItem != "Solid Color" && selectedItem != "Image";
             btnBackground2.DataBindings.Clear();
+            chkFileChanges.Enabled = selectedItem == "Image";
             lblImageOpacity.Enabled = lblBlur.Enabled = trkImageOpacity.Enabled = trkBlur.Enabled = selectedItem == "Image";
             if (selectedItem == "Image")
             {
@@ -114,11 +126,11 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        var image = Image.FromFile(dialog.FileName);
-                        if (Settings.BackgroundImage != null && Settings.BackgroundImage != originalBackgroundImage)
-                            Settings.BackgroundImage.Dispose();
-
-                        Settings.BackgroundImage = ((Button)sender).BackgroundImage = image;
+                        Settings.BackgroundImagePath = imagePath = dialog.FileName;
+                        ((Button) sender).BackgroundImage = DisposeBackground();
+                        watcher.Path = Path.GetDirectoryName(imagePath);
+                        watcher.Filter = Path.GetFileName(imagePath);
+                        watcher.EnableRaisingEvents = true;
                     }
                     catch (Exception ex)
                     {
@@ -131,6 +143,36 @@ namespace LiveSplit.View
             {
                 SettingsHelper.ColorButtonClick((Button)sender, this);
             }
+        }
+
+        private void OnChanged(object source, FileSystemEventArgs e)
+        {
+            var lastWrite = File.GetLastWriteTime(e.FullPath);
+            if (lastWrite == lastRead) return;
+            DisposeBackground();
+            lastRead = lastWrite;
+        }
+
+
+        public Image DisposeBackground()
+        {
+            Image image = null;
+            try
+            {
+                using (var tmp = new Bitmap(imagePath))
+                {
+                    image = new Bitmap(tmp);
+                }
+
+                if (Settings.BackgroundImage != null && Settings.BackgroundImage != originalBackgroundImage)
+                    Settings.BackgroundImage.Dispose();
+                Settings.BackgroundImage = image;
+            }
+            catch (ArgumentException)
+            {
+                
+            }
+            return image;
         }
 
         private void btnTimer_Click(object sender, EventArgs e)

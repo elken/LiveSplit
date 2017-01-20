@@ -21,8 +21,10 @@ namespace LiveSplit.Options
         public Color ShadowsColor { get; set; }
 
         public BackgroundType BackgroundType { get; set; }
+        public bool LiveUpdateImage { get; set; }
 
         public Image BackgroundImage { get; set; }
+        public string BackgroundImagePath { get; set; }
         public float ImageOpacity { get; set; }
         public float ImageBlur { get; set; }
 
@@ -74,6 +76,8 @@ namespace LiveSplit.Options
             BackgroundImage = settings.BackgroundImage;
             ImageOpacity = settings.ImageOpacity;
             ImageBlur = settings.ImageBlur;
+            LiveUpdateImage = settings.LiveUpdateImage;
+            BackgroundImagePath = settings.BackgroundImagePath;
         }
     }
 }

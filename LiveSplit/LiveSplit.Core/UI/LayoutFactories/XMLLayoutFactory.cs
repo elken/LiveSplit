@@ -20,6 +20,8 @@ namespace LiveSplit.UI.LayoutFactories
         private static LayoutSettings ParseSettings(XmlElement element, Version version)
         {
             var settings = new LayoutSettings();
+            settings.BackgroundImagePath = SettingsHelper.ParseString(element["BackgroundImagePath"]);
+            settings.LiveUpdateImage = SettingsHelper.ParseBool(element["LiveUpdateImage"]);
             settings.TextColor = SettingsHelper.ParseColor(element["TextColor"]);
             settings.BackgroundColor = SettingsHelper.ParseColor(element["BackgroundColor"]);
             settings.ThinSeparatorsColor = SettingsHelper.ParseColor(element["ThinSeparatorsColor"]);

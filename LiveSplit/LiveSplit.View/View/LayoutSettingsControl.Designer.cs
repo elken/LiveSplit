@@ -31,10 +31,6 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbBackgroundType = new System.Windows.Forms.ComboBox();
-            this.lblBackground = new System.Windows.Forms.Label();
-            this.btnBackground = new System.Windows.Forms.Button();
-            this.btnBackground2 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.btnGlod = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
@@ -79,10 +75,15 @@
             this.trkOpacity = new System.Windows.Forms.TrackBar();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblImageOpacity = new System.Windows.Forms.Label();
-            this.trkImageOpacity = new System.Windows.Forms.TrackBar();
-            this.lblBlur = new System.Windows.Forms.Label();
             this.trkBlur = new System.Windows.Forms.TrackBar();
+            this.trkImageOpacity = new System.Windows.Forms.TrackBar();
+            this.cmbBackgroundType = new System.Windows.Forms.ComboBox();
+            this.lblBackground = new System.Windows.Forms.Label();
+            this.btnBackground2 = new System.Windows.Forms.Button();
+            this.btnBackground = new System.Windows.Forms.Button();
+            this.lblImageOpacity = new System.Windows.Forms.Label();
+            this.lblBlur = new System.Windows.Forms.Label();
+            this.chkFileChanges = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -91,8 +92,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trkOpacity)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trkImageOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkBlur)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkImageOpacity)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel5
@@ -101,6 +102,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.99567F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.78788F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.94857F));
+            this.tableLayoutPanel5.Controls.Add(this.chkFileChanges, 2, 1);
             this.tableLayoutPanel5.Controls.Add(this.groupBox2, 0, 3);
             this.tableLayoutPanel5.Controls.Add(this.chkAlwaysOnTop, 0, 4);
             this.tableLayoutPanel5.Controls.Add(this.groupBox1, 0, 2);
@@ -117,6 +119,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 142F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 228F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(462, 512);
             this.tableLayoutPanel5.TabIndex = 41;
             // 
@@ -179,60 +182,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(450, 203);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // cmbBackgroundType
-            // 
-            this.cmbBackgroundType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.SetColumnSpan(this.cmbBackgroundType, 2);
-            this.cmbBackgroundType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBackgroundType.FormattingEnabled = true;
-            this.cmbBackgroundType.Items.AddRange(new object[] {
-            "Solid Color",
-            "Vertical Gradient",
-            "Horizontal Gradient",
-            "Image"});
-            this.cmbBackgroundType.Location = new System.Drawing.Point(227, 4);
-            this.cmbBackgroundType.Name = "cmbBackgroundType";
-            this.cmbBackgroundType.Size = new System.Drawing.Size(220, 21);
-            this.cmbBackgroundType.TabIndex = 2;
-            this.cmbBackgroundType.SelectedIndexChanged += new System.EventHandler(this.cmbGradientType_SelectedIndexChanged);
-            // 
-            // lblBackground
-            // 
-            this.lblBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblBackground.AutoSize = true;
-            this.lblBackground.Location = new System.Drawing.Point(3, 8);
-            this.lblBackground.Name = "lblBackground";
-            this.lblBackground.Size = new System.Drawing.Size(85, 13);
-            this.lblBackground.TabIndex = 19;
-            this.lblBackground.Text = "Color:";
-            // 
-            // btnBackground
-            // 
-            this.btnBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBackground.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBackground.Location = new System.Drawing.Point(169, 3);
-            this.btnBackground.Name = "btnBackground";
-            this.btnBackground.Size = new System.Drawing.Size(23, 23);
-            this.btnBackground.TabIndex = 0;
-            this.btnBackground.UseVisualStyleBackColor = false;
-            this.btnBackground.Click += new System.EventHandler(this.ColorButtonClick);
-            // 
-            // btnBackground2
-            // 
-            this.btnBackground2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBackground2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnBackground2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBackground2.Location = new System.Drawing.Point(198, 3);
-            this.btnBackground2.Name = "btnBackground2";
-            this.btnBackground2.Size = new System.Drawing.Size(23, 23);
-            this.btnBackground2.TabIndex = 1;
-            this.btnBackground2.UseVisualStyleBackColor = false;
-            this.btnBackground2.Click += new System.EventHandler(this.BackgroundColorButtonClick);
             // 
             // label9
             // 
@@ -726,13 +675,12 @@
             // 
             // trkOpacity
             // 
-            this.tableLayoutPanel5.SetColumnSpan(this.trkOpacity, 2);
             this.trkOpacity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trkOpacity.Location = new System.Drawing.Point(100, 87);
             this.trkOpacity.Maximum = 100;
             this.trkOpacity.Minimum = 5;
             this.trkOpacity.Name = "trkOpacity";
-            this.trkOpacity.Size = new System.Drawing.Size(359, 23);
+            this.trkOpacity.Size = new System.Drawing.Size(127, 23);
             this.trkOpacity.TabIndex = 0;
             this.trkOpacity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkOpacity.Value = 5;
@@ -775,15 +723,15 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(450, 59);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // lblImageOpacity
+            // trkBlur
             // 
-            this.lblImageOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblImageOpacity.AutoSize = true;
-            this.lblImageOpacity.Location = new System.Drawing.Point(3, 37);
-            this.lblImageOpacity.Name = "lblImageOpacity";
-            this.lblImageOpacity.Size = new System.Drawing.Size(85, 13);
-            this.lblImageOpacity.TabIndex = 20;
-            this.lblImageOpacity.Text = "Image Opacity:";
+            this.trkBlur.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trkBlur.Location = new System.Drawing.Point(320, 32);
+            this.trkBlur.Maximum = 100;
+            this.trkBlur.Name = "trkBlur";
+            this.trkBlur.Size = new System.Drawing.Size(127, 24);
+            this.trkBlur.TabIndex = 23;
+            this.trkBlur.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // trkImageOpacity
             // 
@@ -798,6 +746,70 @@
             this.trkImageOpacity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkImageOpacity.Value = 5;
             // 
+            // cmbBackgroundType
+            // 
+            this.cmbBackgroundType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.SetColumnSpan(this.cmbBackgroundType, 2);
+            this.cmbBackgroundType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBackgroundType.FormattingEnabled = true;
+            this.cmbBackgroundType.Items.AddRange(new object[] {
+            "Solid Color",
+            "Vertical Gradient",
+            "Horizontal Gradient",
+            "Image"});
+            this.cmbBackgroundType.Location = new System.Drawing.Point(227, 4);
+            this.cmbBackgroundType.Name = "cmbBackgroundType";
+            this.cmbBackgroundType.Size = new System.Drawing.Size(220, 21);
+            this.cmbBackgroundType.TabIndex = 2;
+            this.cmbBackgroundType.SelectedIndexChanged += new System.EventHandler(this.cmbGradientType_SelectedIndexChanged);
+            // 
+            // lblBackground
+            // 
+            this.lblBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBackground.AutoSize = true;
+            this.lblBackground.Location = new System.Drawing.Point(3, 8);
+            this.lblBackground.Name = "lblBackground";
+            this.lblBackground.Size = new System.Drawing.Size(85, 13);
+            this.lblBackground.TabIndex = 19;
+            this.lblBackground.Text = "Color:";
+            // 
+            // btnBackground2
+            // 
+            this.btnBackground2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBackground2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnBackground2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBackground2.Location = new System.Drawing.Point(198, 3);
+            this.btnBackground2.Name = "btnBackground2";
+            this.btnBackground2.Size = new System.Drawing.Size(23, 23);
+            this.btnBackground2.TabIndex = 1;
+            this.btnBackground2.UseVisualStyleBackColor = false;
+            this.btnBackground2.Click += new System.EventHandler(this.BackgroundColorButtonClick);
+            // 
+            // btnBackground
+            // 
+            this.btnBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBackground.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBackground.Location = new System.Drawing.Point(169, 3);
+            this.btnBackground.Name = "btnBackground";
+            this.btnBackground.Size = new System.Drawing.Size(23, 23);
+            this.btnBackground.TabIndex = 0;
+            this.btnBackground.UseVisualStyleBackColor = false;
+            this.btnBackground.Click += new System.EventHandler(this.ColorButtonClick);
+            // 
+            // lblImageOpacity
+            // 
+            this.lblImageOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblImageOpacity.AutoSize = true;
+            this.lblImageOpacity.Location = new System.Drawing.Point(3, 37);
+            this.lblImageOpacity.Name = "lblImageOpacity";
+            this.lblImageOpacity.Size = new System.Drawing.Size(85, 13);
+            this.lblImageOpacity.TabIndex = 20;
+            this.lblImageOpacity.Text = "Image Opacity:";
+            // 
             // lblBlur
             // 
             this.lblBlur.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -808,15 +820,16 @@
             this.lblBlur.TabIndex = 22;
             this.lblBlur.Text = "Image Blur:";
             // 
-            // trkBlur
+            // chkFileChanges
             // 
-            this.trkBlur.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trkBlur.Location = new System.Drawing.Point(320, 32);
-            this.trkBlur.Maximum = 100;
-            this.trkBlur.Name = "trkBlur";
-            this.trkBlur.Size = new System.Drawing.Size(127, 24);
-            this.trkBlur.TabIndex = 23;
-            this.trkBlur.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.chkFileChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkFileChanges.AutoSize = true;
+            this.chkFileChanges.Location = new System.Drawing.Point(233, 90);
+            this.chkFileChanges.Name = "chkFileChanges";
+            this.chkFileChanges.Size = new System.Drawing.Size(226, 17);
+            this.chkFileChanges.TabIndex = 27;
+            this.chkFileChanges.Text = "Watch file changes?";
+            this.chkFileChanges.UseVisualStyleBackColor = true;
             // 
             // LayoutSettingsControl
             // 
@@ -839,8 +852,8 @@
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trkImageOpacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkBlur)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkImageOpacity)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -902,6 +915,6 @@
         private System.Windows.Forms.Label lblImageOpacity;
         private System.Windows.Forms.TrackBar trkBlur;
         private System.Windows.Forms.Label lblBlur;
-
+        private System.Windows.Forms.CheckBox chkFileChanges;
     }
 }

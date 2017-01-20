@@ -32,10 +32,12 @@ namespace LiveSplit.Options.SettingsFactories
                 AntiAliasing = true,
                 DropShadows = true,
                 BackgroundType = BackgroundType.SolidColor,
+                LiveUpdateImage = false,
                 BackgroundImage = null,
+                BackgroundImagePath = null,
                 ImageOpacity = 1f,
                 ImageBlur = 0f,
-                Opacity = 1
+                Opacity = 1,
             };
         }
     }

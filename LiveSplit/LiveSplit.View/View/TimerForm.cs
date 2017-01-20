@@ -106,6 +106,8 @@ namespace LiveSplit.View
         public Bitmap BackBuffer { get; set; }
         public object BackBufferLock = new object();
         public bool DrawToBackBuffer { get; set; }
+        public FileSystemWatcher watcher;
+        private DateTime lastRead;
 
 #if WITH_XSPLIT
         public TimedBroadcasterPlugin XSplit { get; set; }
@@ -127,6 +129,8 @@ namespace LiveSplit.View
 
         private void Init(string splitsPath = null, string layoutPath = null)
         {
+            watcher = new FileSystemWatcher();
+            watcher.Changed += OnChanged;
             SetWindowTitle();
 
             SpeedrunCom.Authenticator = new SpeedrunComOAuthForm();
@@ -269,7 +273,38 @@ namespace LiveSplit.View
 #endif
             }
 
+            if (Layout.Settings.LiveUpdateImage)
+            {
+                Console.WriteLine("Polling");
+                watcher.Path = Path.GetDirectoryName(Layout.Settings.BackgroundImagePath);
+                watcher.Filter = Path.GetFileName(Layout.Settings.BackgroundImagePath);
+                watcher.EnableRaisingEvents = true;
+            }
             TopMost = Layout.Settings.AlwaysOnTop;
+            //new Thread(() =>
+            //{
+            //}).Start();
+        }
+
+        void OnChanged(object source, FileSystemEventArgs e)
+        {
+            Console.WriteLine(e.FullPath + " " + e.ChangeType);
+            var lastWrite = File.GetLastWriteTime(e.FullPath);
+            if (lastWrite == lastRead) return;
+
+            try
+            {
+                using (var tmp = new Bitmap(Layout.Settings.BackgroundImagePath))
+                {
+                    Layout.Settings.BackgroundImage = new Bitmap(tmp);
+                }
+
+            }
+            catch (Exception)
+            {
+            }
+            this.Invalidate();
+            lastRead = lastWrite;
         }
 
         void SetWindowTitle()
